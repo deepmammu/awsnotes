@@ -87,8 +87,8 @@ Amazon Cognito supports multiple identity and access management scenarios. Below
 
 This is the most common use case — authenticating users through a **Cognito User Pool** and securing access to your backend APIs.
 
- <pre class="mermaid">
 ```mermaid
+<pre class="mermaid">
 sequenceDiagram
     participant User
     participant WebApp
@@ -104,8 +104,8 @@ sequenceDiagram
     API->>DB: Fetch or update data
     DB-->>API: Response
     API-->>WebApp: Result (secured)
-```
 </pre>
+```
 
 Use Case:
 
@@ -119,8 +119,8 @@ Supports MFA, email verification, and custom workflows
 
 Authenticate users using Google, Facebook, or Apple, and access AWS services via Identity Pools.
 
- <pre class="mermaid">
 ```mermaid
+ <pre class="mermaid">
 sequenceDiagram
 participant User
 participant App
@@ -137,9 +137,9 @@ participant AWS Services
     App->>Cognito Identity Pool: Exchange token
     Cognito Identity Pool-->>App: Temporary AWS credentials
     App->>AWS Services: Access (e.g., S3, DynamoDB)
+    </pre>
 
 ```
-</pre>
 
 Use Case:
 
@@ -153,8 +153,8 @@ Ideal for mobile apps and SaaS integrations
 
 Secure your API Gateway endpoints using Cognito User Pool authorizer — perfect for serverless apps with Lambda.
 
- <pre class="mermaid">
 ```mermaid
+<pre class="mermaid">
 sequenceDiagram
 participant Client
 participant Cognito User Pool
@@ -171,8 +171,9 @@ participant DynamoDB
     DynamoDB-->>Lambda: Response
     Lambda-->>API Gateway: Return response
     API Gateway-->>Client: API result
+
+    </pre>
 ```
-</pre>
 
 Use Case:
 
@@ -186,8 +187,8 @@ Fine-grained control with Cognito Groups + IAM
 
 Let unauthenticated users access limited AWS services (e.g., S3 for reading files), and upgrade them upon registration.
 
- <pre class="mermaid">
 ```mermaid
+<pre class="mermaid">
 sequenceDiagram
 participant App
 participant Cognito Identity Pool
@@ -204,8 +205,8 @@ participant API
     App->>Identity Pool: Authenticated login
     Identity Pool-->>App: New credentials with full access
     App->>API: Make secured API calls
+    </pre>
 ```
-</pre>
 
 Use Case:
 
@@ -219,8 +220,8 @@ Common in mobile or gaming apps
 
 Use Cognito to manage multiple tenants (companies) and assign roles per tenant using groups.
 
- <pre class="mermaid">
 ```mermaid
+ <pre class="mermaid">
 graph TD
 A[User] -->|Login| B(Cognito User Pool)
 B -->|Returns JWT| C[Frontend App]
@@ -230,8 +231,8 @@ E -->|Admin| F[Admin Lambda]
 E -->|User| G[User Lambda]
 F --> DB1[(Tenant DB 1)]
 G --> DB2[(Tenant DB 2)]
-```
 </pre>
+```
 
 Use Case:
 
