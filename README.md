@@ -109,6 +109,7 @@ sequenceDiagram
 
 Authenticate users using Google, Facebook, or Apple, and access AWS services via Identity Pools.
 
+```mermaid
 sequenceDiagram
 participant User
 participant App
@@ -126,10 +127,13 @@ participant AWS Services
     Cognito Identity Pool-->>App: Temporary AWS credentials
     App->>AWS Services: Access (e.g., S3, DynamoDB)
 
+```
+
 ## 3. Serverless API Gateway Authentication (Cognito Authorizer)
 
 Secure your API Gateway endpoints using Cognito User Pool authorizer — perfect for serverless apps with Lambda.
 
+```mermaid
 sequenceDiagram
 participant Client
 participant Cognito User Pool
@@ -146,11 +150,13 @@ participant DynamoDB
     DynamoDB-->>Lambda: Response
     Lambda-->>API Gateway: Return response
     API Gateway-->>Client: API result
+```
 
 ## 4. Anonymous Guest Access + User Promotion
 
 Let unauthenticated users access limited AWS services (e.g., S3 for reading files), and upgrade them upon registration.
 
+```mermaid
 sequenceDiagram
 participant App
 participant Cognito Identity Pool
@@ -167,6 +173,7 @@ participant API
     App->>Identity Pool: Authenticated login
     Identity Pool-->>App: New credentials with full access
     App->>API: Make secured API calls
+```
 
 Use Case:
 
@@ -180,6 +187,7 @@ Common in mobile or gaming apps
 
 Use Cognito to manage multiple tenants (companies) and assign roles per tenant using groups.
 
+```mermaid
 graph TD
 A[User] -->|Login| B(Cognito User Pool)
 B -->|Returns JWT| C[Frontend App]
@@ -189,6 +197,7 @@ E -->|Admin| F[Admin Lambda]
 E -->|User| G[User Lambda]
 F --> DB1[(Tenant DB 1)]
 G --> DB2[(Tenant DB 2)]
+```
 
 Use Case:
 
