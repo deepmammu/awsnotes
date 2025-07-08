@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>AWS nodes</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <div id="Amazon_Cognito">Loading...</div>
+
+    <script>
+        fetch('README.md')
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('Amazon_Cognito').innerHTML = marked.parse(text);
+            });
+    </script>
+</body>
+
+</html>
