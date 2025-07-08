@@ -105,6 +105,14 @@ sequenceDiagram
     API-->>WebApp: Result (secured)
 ```
 
+Use Case:
+
+User login via web/mobile app
+
+Token-based API access
+
+Supports MFA, email verification, and custom workflows
+
 ## 2. Social Login (OAuth) via Cognito with Federated Identity
 
 Authenticate users using Google, Facebook, or Apple, and access AWS services via Identity Pools.
@@ -129,6 +137,14 @@ participant AWS Services
 
 ```
 
+Use Case:
+
+No user registration management needed
+
+Grant limited AWS access (S3, DynamoDB) using temporary credentials
+
+Ideal for mobile apps and SaaS integrations
+
 ## 3. Serverless API Gateway Authentication (Cognito Authorizer)
 
 Secure your API Gateway endpoints using Cognito User Pool authorizer — perfect for serverless apps with Lambda.
@@ -151,6 +167,14 @@ participant DynamoDB
     Lambda-->>API Gateway: Return response
     API Gateway-->>Client: API result
 ```
+
+Use Case:
+
+Securing serverless REST APIs
+
+Custom Lambda logic post-authentication
+
+Fine-grained control with Cognito Groups + IAM
 
 ## 4. Anonymous Guest Access + User Promotion
 
