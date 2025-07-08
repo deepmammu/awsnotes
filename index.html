@@ -1,25 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>AWS nodes</title>
+    <meta charset="UTF-8" />
+    <title>Dynamic Markdown Loader</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: blue;
+        }
+
+        #content {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="Amazon_Cognito">Loading...</div>
+
+    <h1>README Viewer</h1>
+
+    <nav>
+        <a href="#" onclick="loadMarkdown('Amazon_Cognito.md')">README 1</a>
+        <a href="#" onclick="loadMarkdown('README2.md')">README 2</a>
+        <a href="#" onclick="loadMarkdown('README3.md')">README 3</a>
+    </nav>
+
+    <div id="content">Click a README to view it here.</div>
 
     <script>
-        fetch('Amazon_Cognito.md')
-            .then(response => response.text())
-            .then(text => {
-                document.getElementById('Amazon_Cognito').innerHTML = marked.parse(text);
-            });
-    </script>
-    <script type="module">
-        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-        mermaid.initialize({ startOnLoad: true });
+        function loadMarkdown(file) {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = 'Loading...';  // Clear and show loading message
+
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) throw new Error("File not found");
+                    return response.text();
+                })
+                .then(md => {
+                    // Render only this file's content, replaces old one
+                    contentDiv.innerHTML = marked.parse(md);
+                })
+                .catch(err => {
+                    contentDiv.innerHTML = `<p style="color:red;">Error loading file: ${err.message}</p>`;
+                });
+        }
     </script>
 
 </body>
